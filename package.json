@@ -1,0 +1,33 @@
+{
+  "name": "fondo",
+  "version": "1.0.0",
+  "description": "website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neetigyachahar/fondo.git"
+  },
+  "engines": {
+    "node": "~10.15.3",
+    "npm": "~6.4.1"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.517.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "4.x",
+    "formidable": "^1.2.1",
+    "fs": "latest",
+    "http": "latest",
+    "multer": "1.4.1",
+    "mysql": "latest",
+    "socket.io": "latest",
+    "url": "latest"
+  },
+  "author": "Neetigya Chahar",
+  "license": "ISC"
+}

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>Home</title>
+
+    <link rel="icon" href="https://fondo-photobase.s3.ap-south-1.amazonaws.com/favicon.ico">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link href="https://fonts.googleapis.com/css?family=Livvic&display=swap" rel="stylesheet">
+    
+    <script   src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCEK2lNJ7ekp7VdRAe9Jc3JzxIf3sB40GE"></script>
+    <script defer src="main.js"></script>
+
+</head>
+<body>
+    <!-- <style>
+        #online{
+            width: 100%;
+            height: 40px;
+        }
+    </style> -->
+    <div id="backcontent"></div>
+    <div id="content">
+                    <div id="map"></div>
+    <div id="options">
+        <div id="wrapper">
+                <div id = "online">Online: <span>0</span> </div>
+                <input id="nameTaker" type="text" name="authorizedIDX" placeholder="Set a name" value><br>
+                <button id = 'mlbtn' class="btn" onclick="toggle();" >Machine Learning</button><br><br>
+                <div id = 'ml' style="display: none; text-align: left;">
+                    <div>At 5:00 PM, on various dates!</div>
+                    <div>1/10/19 - TT &nbsp&nbsp&nbsp&nbsp6/10/19 - TT</div>
+                    <div>2/10/19 - SJT &nbsp&nbsp&nbsp&nbsp7/10/19 - Library</div>
+                    <div>3/10/19 - TT &nbsp&nbsp&nbsp&nbsp8/10/19 - TT</div>
+                    <div>4/10/19 - SMV  &nbsp&nbsp&nbsp&nbsp9/10/19 - SJT</div>
+                    <div>5/10/19 - TT &nbsp&nbsp&nbsp&nbsp 10/10/19 - TT </div>
+                    <button id="chp" class="btn" onclick="predict();" >Click Here for prediction!</button><br>
+                    <div style= "font-size: 18px;" id="predictInput"></div><br>
+                </div>
+        <div id="optionsWrapper">
+            <select id="source" required>
+                    <option value="start" style="background-color:blue!important;"><b>Select Starting Point</b></option>
+                    <option value="21">SJT</option>
+                    <option value="33">Technological Tower</option>
+                    <option value="47">SMV</option>
+                    <option value="73">GDN</option>
+                    <option value="57">Library</option>
+                    <option value="62">Dr. MGR Block</option>
+                    <option value="70">Anna Audi</option>
+                    <option value="65">Main Gate</option>
+                    <option value="15">M-block</option>
+                    <option value="78">Swiming Pool</option>
+                    <option value="9">Main Subway</option>
+                    <option value="18">SJT Ground</option>
+                    <option value="25">Ladies Hostel 1</option>
+                    <option value="27">Mother Teresa Block</option>
+                    <option value="35">Food Court</option>
+                    <option value="39">VIT Lake</option>
+                    <option value="43">Greenos</option>
+                    <option value="45">Foodys</option>
+                    <option value="41">Gate 3</option>
+                    <option value="49">Wood Stock</option>
+                    <option value="76">All Mart</option>
+                    <option value="77">Health Care</option>
+                    <option value="1">Stadium</option>
+                    </select>
+
+            <select id="destination" required>
+                    <option value="dest" style="background-color:blue!important;"><b>Select Destination</b></option>
+                    <option value="21">SJT</option>
+                    <option value="33">Technological Tower</option>
+                    <option value="47">SMV</option>
+                    <option value="73">GDN</option>
+                    <option value="57">Library</option>
+                    <option value="62">Dr. MGR Block</option>
+                    <option value="70">Anna Audi</option>
+                    <option value="65">Main Gate</option>
+                    <option value="15">M-block</option>
+                    <option value="78">Swiming Pool</option>
+                    <option value="9">Main Subway</option>
+                    <option value="18">SJT Ground</option>
+                    <option value="25">Ladies Hostel 1</option>
+                    <option value="27">Mother Teresa Block</option>
+                    <option value="35">Food Court</option>
+                    <option value="39">VIT Lake</option>
+                    <option value="43">Greenos</option>
+                    <option value="45">Foodys</option>
+                    <option value="41">Gate 3</option>
+                    <option value="49">Wood Stock</option>
+                    <option value="76">All Mart</option>
+                    <option value="77">Health Care</option>
+                    <option value="1">Stadium</option>
+                    </select>
+
+            <select id="travel">
+                <option value="1.2">Walking</option>
+                <option value="5.2">Cycle</option>
+                <option value="13.8">Car</option>
+                <option value="7.4">Shuttle</option>
+            </select>
+        </div>
+            <div id="isme"></div>
+    <button id="navigate" class = "btn" onclick="callme();">Navigate</button> 
+    <button class="btn" onclick="demo();" >Automate!</button><br>
+    <!-- <button id="btn1" onclick="successT({lat:12.970972,lng:79.164093});">Click Here</button>
+    <button id="btn2" onclick="ttio(1);">Click Here</button>
+    <button id="btn2" onclick="ttio(0);">Click Here</button> -->
+    </div>
+</div>
+</div>
+<div id="chatBox">
+        <div style="color: white; text-align: center;">
+        <h3 class="outter" id="chatpop"><span>Chat Room</span><div>&#x25CF;&nbsp;</div></h3>
+        <section id="sec">
+        <h3 id="head"><span>Chat Room</span><div>&#x25CF;&nbsp;</div></h3>
+        <div id="chatFeed">
+            <ol class="messages">
+            </ol>
+          </div>
+          <div id="interact">
+                <input id="chatInput" type="text">
+                <button id="chatbtn">Send</button>
+        </div>
+    </section>
+        </div>
+</body>
+</html>
